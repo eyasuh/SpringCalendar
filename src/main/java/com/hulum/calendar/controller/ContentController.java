@@ -2,6 +2,7 @@ package com.hulum.calendar.controller;
 
 import com.hulum.calendar.model.Content;
 import com.hulum.calendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/content")
 public class ContentController {
 	private final ContentCollectionRepository repository;
@@ -31,7 +33,7 @@ public class ContentController {
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void create (@RequestBody Content content) {
+	public void create (@Valid @RequestBody Content content) {
 		repository.save(content);
 	}
 
